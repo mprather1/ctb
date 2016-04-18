@@ -4,20 +4,21 @@ var Person = Backbone.Model.extend({
     age: 30,
     occupation: "Worker"
   },
+});
 
-  // validations on person.set must be called by using
-  // person.set('age', -50, { validate: true } )
-  validate: function(attrs) {
-    if ( attrs.age < 0 ) {
-      return 'Age must be positive!!!'
-    }
+var PersonView = Backbone.View.extend({
+  tagName: 'li',
+  // className: 'person',
+  // id: 'some-person'
 
-    if ( ! attrs.name ) {
-      return 'Every person must have a name!!!'
-    }
+  initialize: function() {
+    this.render();
   },
 
-  work: function() {
-    return this.get('name') + " is working!!!"
+  render: function() {
+    this.$el.html( this.model.get('name') );
   }
 });
+
+var person = new Person;
+var personView = new PersonView({ model: person });
