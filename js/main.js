@@ -1,3 +1,4 @@
+//Person Model
 var Person = Backbone.Model.extend({
   defaults: {
     name: 'John Doe',
@@ -6,6 +7,12 @@ var Person = Backbone.Model.extend({
   },
 });
 
+//Collection of people
+var PeopleCollection = Backbone.Collection.extend({
+  model: Person
+});
+
+//View for a person
 var PersonView = Backbone.View.extend({
   tagName: 'li',
   // className: 'person',
@@ -22,5 +29,15 @@ var PersonView = Backbone.View.extend({
   }
 });
 
+//Instantiate 
 var person = new Person;
-var personView = new PersonView({ model: person });
+var peopleCollection = new PeopleCollection([
+  {
+    name: 'mike',
+    age: 33
+  },
+  {
+    name: 'joe',
+    age: 400
+  }
+]);
